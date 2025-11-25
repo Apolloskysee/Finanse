@@ -6,6 +6,9 @@
     <title>FinTrack Pro - Финансовый трекер</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
         :root {
             --primary: #4361ee;
@@ -1352,6 +1355,20 @@
     </div>
 </div>
     <script>
+         const firebaseConfig = {
+            apiKey: "AIzaSyB6c9xgkE3h-dBGkxNbZ7pEKzLMZ62J9do",
+            authDomain: "finance-78bce.firebaseapp.com",
+            projectId: "finance-78bce",
+            storageBucket: "finance-78bce.firebasestorage.app",
+            messagingSenderId: "637957749534",
+            appId: "1:637957749534:web:fad67573867814bbd19a7bf"
+        };
+
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
         // Основные данные
 let currentUser = null;
 let transactions = [];
@@ -1429,21 +1446,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    if (!localStorage.getItem('finTrackUsers')) {
-        localStorage.setItem('finTrackUsers', JSON.stringify([]));
-    }
-    if (!localStorage.getItem('finTrackTransactions')) {
-        localStorage.setItem('finTrackTransactions', JSON.stringify([]));
-    }
-    if (!localStorage.getItem('finTrackTasks')) {
-        localStorage.setItem('finTrackTasks', JSON.stringify([]));
-    }
-    if (!localStorage.getItem('finTrackGoals')) {
-        localStorage.setItem('finTrackGoals', JSON.stringify([]));
-    }
-    if (!localStorage.getItem('finTrackDebts')) {
-        localStorage.setItem('finTrackDebts', JSON.stringify([]));
-    }
+    
     
     populateCategorySelects();
     setupCategoryFilters();
@@ -1499,70 +1502,276 @@ function handleRegister(e) {
     e.preventDefault();
     
     const name = document.getElementById('registerName').value;
-    const email = document.getElementById('registerEmail').value.toLowerCase();
+    const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
     
-    const users = JSON.parse(localStorage.getItem('finTrackUsers'));
-    
-    if (users.find(u => u.email === email)) {
-        showNotification('Пользователь с таким email уже зарегистрирован', 'error');
-        return;
-    }
-    
-    const newUser = {
-        id: Date.now(),
-        name,
-        email,
-        password: btoa(password),
-        subscription: 'trial',
-        createdAt: new Date().toISOString()
-    };
-    
-    users.push(newUser);
-    localStorage.setItem('finTrackUsers', JSON.stringify(users));
-    
-    currentUser = newUser;
-    localStorage.setItem('finTrackCurrentUser', JSON.stringify(newUser));
-    
-    closeModal('registerModal');
-    showApp();
-    showNotification(`Добро пожаловать, ${name}!`, 'success');
+    // Создаем пользователя в Firebase Authentication
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            
+            // Сохраняем дополнительную информацию в Firestore
+            return db.collection('users').doc(user.uid).set({
+                name: name,
+                email: email,
+                subscription: 'trial',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        })
+        .then(() => {
+            closeModal('registerModal');
+            showNotification(`Добро пожаловать, ${name}!`, 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка регистрации:', error);
+            let errorMessage = 'Ошибка регистрации';
+            
+            switch(error.code) {
+                case 'auth/email-already-in-use':
+                    errorMessage = 'Пользователь с таким email уже зарегистрирован';
+                    break;
+                case 'auth/weak-password':
+                    errorMessage = 'Пароль должен содержать минимум 6 символов';
+                    break;
+                case 'auth/invalid-email':
+                    errorMessage = 'Неверный формат email';
+                    break;
+            }
+            
+            showNotification(errorMessage, 'error');
+        });
 }
 
 function handleLogin(e) {
     e.preventDefault();
     
-    const email = document.getElementById('loginEmail').value.toLowerCase();
+    const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     
-    const users = JSON.parse(localStorage.getItem('finTrackUsers'));
-    const user = users.find(u => u.email === email && u.password === btoa(password));
-    
-    if (user) {
-        currentUser = user;
-        localStorage.setItem('finTrackCurrentUser', JSON.stringify(user));
-        closeModal('loginModal');
-        showApp();
-        showNotification(`С возвращением, ${user.name}!`, 'success');
-    } else {
-        showNotification('Неверный email или пароль', 'error');
-    }
+    auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            closeModal('loginModal');
+            showNotification('Вход выполнен успешно!', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка входа:', error);
+            let errorMessage = 'Ошибка входа';
+            
+            switch(error.code) {
+                case 'auth/user-not-found':
+                    errorMessage = 'Пользователь не найден';
+                    break;
+                case 'auth/wrong-password':
+                    errorMessage = 'Неверный пароль';
+                    break;
+                case 'auth/invalid-email':
+                    errorMessage = 'Неверный формат email';
+                    break;
+            }
+            
+            showNotification(errorMessage, 'error');
+        });
 }
 
 function handleLogout() {
-    currentUser = null;
-    localStorage.removeItem('finTrackCurrentUser');
-    showAuth();
-    showNotification('Вы вышли из системы', 'success');
+    auth.signOut()
+        .then(() => {
+            showNotification('Вы вышли из системы', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка выхода:', error);
+            showNotification('Ошибка при выходе', 'error');
+        });
 }
 
 function checkAuthStatus() {
-    const userData = localStorage.getItem('finTrackCurrentUser');
-    if (userData) {
-        currentUser = JSON.parse(userData);
-        showApp();
-    } else {
-        showAuth();
+    // Слушатель состояния аутентификации
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // Пользователь вошел в систему
+            db.collection('users').doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        currentUser = {
+                            uid: user.uid,
+                            email: user.email,
+                            ...doc.data()
+                        };
+                        showApp();
+                        loadUserData();
+                    }
+                })
+                .catch((error) => {
+                    console.error('Ошибка загрузки данных пользователя:', error);
+                });
+        } else {
+            // Пользователь вышел
+            currentUser = null;
+            showAuth();
+        }
+    });
+}
+// ==================== FIREBASE FIRESTORE OPERATIONS ====================
+function loadUserData() {
+    if (!currentUser) return;
+    
+    // Загрузка транзакций
+    db.collection('transactions')
+        .where('userId', '==', currentUser.uid)
+        .orderBy('date', 'desc')
+        .onSnapshot((snapshot) => {
+            transactions = [];
+            snapshot.forEach((doc) => {
+                transactions.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+            updateUI();
+        });
+
+    // Загрузка задач
+    db.collection('tasks')
+        .where('userId', '==', currentUser.uid)
+        .orderBy('createdAt', 'desc')
+        .onSnapshot((snapshot) => {
+            tasks = [];
+            snapshot.forEach((doc) => {
+                tasks.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+            updateTaskList();
+            updateTaskProgress();
+        });
+
+    // Загрузка целей
+    db.collection('goals')
+        .where('userId', '==', currentUser.uid)
+        .onSnapshot((snapshot) => {
+            goals = [];
+            snapshot.forEach((doc) => {
+                goals.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+            updateGoalsDisplay();
+        });
+
+    // Загрузка долгов
+    db.collection('debts')
+        .where('userId', '==', currentUser.uid)
+        .onSnapshot((snapshot) => {
+            debts = [];
+            snapshot.forEach((doc) => {
+                debts.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+            updateDebtsDisplay();
+        });
+}
+
+function addTransaction(transactionData) {
+    return db.collection('transactions').add({
+        userId: currentUser.uid,
+        ...transactionData,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+
+function addTask(taskData) {
+    return db.collection('tasks').add({
+        userId: currentUser.uid,
+        ...taskData,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+
+function addGoal(goalData) {
+    return db.collection('goals').add({
+        userId: currentUser.uid,
+        ...goalData,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+
+function addDebt(debtData) {
+    return db.collection('debts').add({
+        userId: currentUser.uid,
+        ...debtData,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
+
+function deleteTransaction(id) {
+    if (!confirm('Удалить эту транзакцию?')) return;
+    
+    db.collection('transactions').doc(id).delete()
+        .then(() => {
+            showNotification('Транзакция удалена!', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка удаления транзакции:', error);
+            showNotification('Ошибка при удалении транзакции', 'error');
+        });
+}
+
+function deleteTask(id) {
+    if (!confirm('Удалить эту задачу?')) return;
+    
+    db.collection('tasks').doc(id).delete()
+        .then(() => {
+            showNotification('Задача удалена!', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка удаления задачи:', error);
+            showNotification('Ошибка при удалении задачи', 'error');
+        });
+}
+
+function deleteGoal(id) {
+    if (!confirm('Удалить эту цель?')) return;
+    
+    db.collection('goals').doc(id).delete()
+        .then(() => {
+            showNotification('Цель удалена!', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка удаления цели:', error);
+            showNotification('Ошибка при удалении цели', 'error');
+        });
+}
+
+function deleteDebt(id) {
+    if (!confirm('Удалить эту запись о долге?')) return;
+    
+    db.collection('debts').doc(id).delete()
+        .then(() => {
+            showNotification('Долг удален!', 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка удаления долга:', error);
+            showNotification('Ошибка при удалении долга', 'error');
+        });
+}
+
+function toggleTaskCompletion(taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    if (task) {
+        db.collection('tasks').doc(taskId).update({
+            completed: !task.completed
+        })
+        .then(() => {
+            showNotification(`Задача ${!task.completed ? 'выполнена' : 'возвращена в работу'}!`, 'success');
+        })
+        .catch((error) => {
+            console.error('Ошибка обновления задачи:', error);
+            showNotification('Ошибка при обновлении задачи', 'error');
+        });
     }
 }
 
@@ -1582,6 +1791,10 @@ function showAuth() {
     document.getElementById('appContainer').style.display = 'none';
     document.getElementById('headerActions').style.display = 'flex';
     document.getElementById('userMenu').style.display = 'none';
+     transactions = [];
+    tasks = [];
+    goals = [];
+    debts = [];
 }
 
 // ==================== ОБНОВЛЕННАЯ ЛОГИКА ДАННЫХ ====================
