@@ -671,6 +671,282 @@
                 flex-direction: column;
             }
         }
+@media (max-width: 768px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .chart-container {
+        padding: 15px;
+        min-height: 300px;
+    }
+    
+    .chart-container canvas {
+        max-height: 250px !important;
+    }
+    
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card .amount {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .chart-container {
+        padding: 15px;
+        min-height: 300px;
+    }
+    
+    .chart-container canvas {
+        max-height: 250px !important;
+    }
+    
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card .amount {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+/* Убедимся что графики не выходят за границы */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions {
+        gap: 10px;
+    }
+    
+    .quick-action {
+        min-width: calc(50% - 10px);
+    }
+    
+    .analytics-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .category-filters {
+        justify-content: center;
+    }
+}
+/* Адаптивная таблица транзакций */
+.transactions-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.transactions-table table {
+    min-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .transactions-table {
+        border-radius: var(--border-radius);
+        background: white;
+        box-shadow: var(--box-shadow);
+    }
+    
+    .transactions-table table {
+        min-width: 100%;
+        margin-bottom: 0;
+    }
+    
+    .transactions-table th,
+    .transactions-table td {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    
+    .transactions-table .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .transactions-table .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Стили для долгов */
+.debt-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+    border-left: 4px solid #FF9800;
+}
+
+.debt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.debt-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.debt-positive {
+    color: var(--success);
+}
+
+.debt-negative {
+    color: var(--danger);
+}
+
+/* Стили для календаря задач */
+.calendar-view {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.calendar-day.has-tasks {
+    background: rgba(67, 97, 238, 0.1);
+    border-color: var(--primary);
+}
+
+.calendar-day.selected {
+    background: var(--primary);
+    color: white;
+}
+
+/* Улучшенные задачи */
+.task-card-new {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.task-card-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.task-description {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.task-meta-new {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.task-priority-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Прогресс выполнения */
+.progress-section {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+}
+
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.progress-stat {
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+}
     </style>
 </head>
 <body>
@@ -706,6 +982,7 @@
                 <li><a href="#" class="nav-link" data-page="tasks"><i class="fas fa-tasks"></i> <span>Задачи</span></a></li>
                 <li><a href="#" class="nav-link" data-page="analytics"><i class="fas fa-chart-pie"></i> <span>Аналитика</span></a></li>
                 <li><a href="#" class="nav-link" data-page="goals"><i class="fas fa-bullseye"></i> <span>Цели</span></a></li>
+                <li><a href="#" class="nav-link" data-page="debts"><i class="fas fa-hand-holding-usd"></i> <span>Долги</span></a></li>
                 <li><a href="#" class="nav-link" data-page="subscription"><i class="fas fa-crown"></i> <span>Подписка</span></a></li>
             </ul>
         </div>
@@ -753,21 +1030,25 @@
                 </div>
                 
                 <div class="table-container">
-                    <h3>Последние транзакции</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Описание</th>
-                                <th>Категория</th>
-                                <th>Сумма</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recentTransactions">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <h3>Все транзакции</h3>
+    <div class="transactions-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Тип</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                    <th>Сумма</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="allTransactions">
+                <!-- Transactions will be added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
             
             <!-- Transactions Page -->
             <div class="page" id="transactions">
@@ -800,7 +1081,21 @@
                     <h2>Задачи</h2>
                     <button class="btn btn-primary" onclick="showAddTaskModal()">Добавить задачу</button>
                 </div>
-                
+                 <!-- Прогресс выполнения -->
+    <div class="progress-section" id="taskProgress">
+        <!-- Прогресс будет здесь -->
+    </div>
+
+    <!-- Календарь задач -->
+    <div class="calendar-view">
+        <div class="calendar-header">
+            <h3>Календарь задач</h3>
+            <span id="currentMonth"></span>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Календарь будет здесь -->
+        </div>
+    </div>
                 <div class="task-grid" id="taskList">
                 </div>
             </div>
@@ -844,7 +1139,16 @@
                 <div class="goals-grid" id="goalsList">
                 </div>
             </div>
-            
+            <div class="page" id="debts">
+    <div class="page-title">
+        <h2>Учет долгов</h2>
+        <button class="btn btn-primary" onclick="openModal('addDebtModal')">Добавить долг</button>
+    </div>
+    
+    <div id="debtsList">
+        <!-- Список долгов будет здесь -->
+    </div>
+</div>
             <!-- Subscription Page -->
             <div class="page" id="subscription">
                 <div class="page-title">
@@ -1015,697 +1319,952 @@
             </form>
         </div>
     </div>
-
+    <div class="modal" id="addDebtModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('addDebtModal')">&times;</span>
+        <h2 class="modal-title">Добавить долг</h2>
+        <form id="debtForm">
+            <div class="form-group">
+                <label>Тип долга</label>
+                <select class="form-control" id="debtType" required>
+                    <option value="debt_income">Мне должны</option>
+                    <option value="debt_expense">Я должен</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Сумма</label>
+                <input type="number" class="form-control" id="debtAmount" placeholder="0" required>
+            </div>
+            <div class="form-group">
+                <label>Кто/кому</label>
+                <input type="text" class="form-control" id="debtPerson" placeholder="Имя человека или организация" required>
+            </div>
+            <div class="form-group">
+                <label>Описание</label>
+                <input type="text" class="form-control" id="debtDescription" placeholder="Описание долга">
+            </div>
+            <div class="form-group">
+                <label>Срок возврата</label>
+                <input type="date" class="form-control" id="debtDueDate">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Добавить</button>
+        </form>
+    </div>
+</div>
     <script>
         // Основные данные
-        let currentUser = null;
-        let transactions = [];
-        let tasks = [];
-        let goals = [];
-        let categories = [
-            // Доходы
-            { id: 1, name: "Зарплата", type: "income", icon: "💼", color: "#4CAF50" },
-            { id: 2, name: "Фриланс", type: "income", icon: "💻", color: "#2196F3" },
-            { id: 3, name: "Инвестиции", type: "income", icon: "📈", color: "#FF9800" },
-            
-            // Основные расходы
-            { id: 4, name: "Продукты", type: "expense", icon: "🛒", color: "#4CAF50" },
-            { id: 5, name: "Транспорт", type: "expense", icon: "🚗", color: "#2196F3" },
-            { id: 6, name: "Жилье", type: "expense", icon: "🏠", color: "#FF9800" },
-            { id: 7, name: "Коммуналка", type: "expense", icon: "💡", color: "#F44336" },
-            { id: 8, name: "Развлечения", type: "expense", icon: "🎬", color: "#673AB7" },
-            { id: 9, name: "Здоровье", type: "expense", icon: "🏥", color: "#4CAF50" },
-            { id: 10, name: "Одежда", type: "expense", icon: "👕", color: "#795548" },
-            { id: 11, name: "Другое", type: "both", icon: "📦", color: "#9E9E9E" }
-        ];
+let currentUser = null;
+let transactions = [];
+let tasks = [];
+let goals = [];
+let debts = [];
+let categories = [
+    // Доходы
+    { id: 1, name: "Зарплата", type: "income", icon: "💼", color: "#4CAF50" },
+    { id: 2, name: "Фриланс", type: "income", icon: "💻", color: "#2196F3" },
+    { id: 3, name: "Инвестиции", type: "income", icon: "📈", color: "#FF9800" },
+    { id: 4, name: "Подарки", type: "income", icon: "🎁", color: "#E91E63" },
+    { id: 5, name: "Возврат долга", type: "income", icon: "↩️", color: "#9C27B0" },
+    
+    // Основные расходы
+    { id: 6, name: "Продукты", type: "expense", icon: "🛒", color: "#4CAF50" },
+    { id: 7, name: "Транспорт", type: "expense", icon: "🚗", color: "#2196F3" },
+    { id: 8, name: "Жилье", type: "expense", icon: "🏠", color: "#FF9800" },
+    { id: 9, name: "Коммуналка", type: "expense", icon: "💡", color: "#F44336" },
+    { id: 10, name: "Связь", type: "expense", icon: "📱", color: "#9C27B0" },
+    
+    // Развлечения
+    { id: 11, name: "Рестораны", type: "expense", icon: "🍽️", color: "#E91E63" },
+    { id: 12, name: "Развлечения", type: "expense", icon: "🎬", color: "#673AB7" },
+    { id: 13, name: "Хобби", type: "expense", icon: "🎨", color: "#00BCD4" },
+    { id: 14, name: "Путешествия", type: "expense", icon: "✈️", color: "#FF5722" },
+    
+    // Здоровье и красота
+    { id: 15, name: "Здоровье", type: "expense", icon: "🏥", color: "#4CAF50" },
+    { id: 16, name: "Спорт", type: "expense", icon: "💪", color: "#2196F3" },
+    { id: 17, name: "Красота", type: "expense", icon: "💄", color: "#E91E63" },
+    
+    // Образование
+    { id: 18, name: "Образование", type: "expense", icon: "📚", color: "#FF9800" },
+    { id: 19, name: "Курсы", type: "expense", icon: "🎓", color: "#9C27B0" },
+    
+    // Долги
+    { id: 20, name: "Мне должны", type: "debt_income", icon: "📥", color: "#4CAF50" },
+    { id: 21, name: "Я должен", type: "debt_expense", icon: "📤", color: "#F44336" },
+    
+    // Прочее
+    { id: 22, name: "Одежда", type: "expense", icon: "👕", color: "#795548" },
+    { id: 23, name: "Техника", type: "expense", icon: "💻", color: "#607D8B" },
+    { id: 24, name: "Подарки", type: "expense", icon: "🎁", color: "#E91E63" },
+    { id: 25, name: "Другое", type: "both", icon: "📦", color: "#9E9E9E" }
+];
 
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-            setupEventListeners();
-            checkAuthStatus();
-        });
-
-        function initializeApp() {
-            if (!localStorage.getItem('finTrackUsers')) {
-                localStorage.setItem('finTrackUsers', JSON.stringify([]));
-            }
-            if (!localStorage.getItem('finTrackTransactions')) {
-                localStorage.setItem('finTrackTransactions', JSON.stringify([]));
-            }
-            if (!localStorage.getItem('finTrackTasks')) {
-                localStorage.setItem('finTrackTasks', JSON.stringify([]));
-            }
-            if (!localStorage.getItem('finTrackGoals')) {
-                localStorage.setItem('finTrackGoals', JSON.stringify([]));
-            }
-            
-            populateCategorySelects();
-            setupCategoryFilters();
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+    setupEventListeners();
+    checkAuthStatus();
+    
+    // Автообновление графиков
+    window.addEventListener('resize', function() {
+        if (window.categoryChartInstance) {
+            window.categoryChartInstance.destroy();
+            window.categoryChartInstance = null;
         }
-
-        function setupEventListeners() {
-            // Авторизация
-            document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
-            document.getElementById('registerBtn').addEventListener('click', () => openModal('registerModal'));
-            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
-            
-            // Формы
-            document.getElementById('registerForm').addEventListener('submit', handleRegister);
-            document.getElementById('loginForm').addEventListener('submit', handleLogin);
-            document.getElementById('transactionForm').addEventListener('submit', handleTransactionSubmit);
-            document.getElementById('taskForm').addEventListener('submit', handleTaskSubmit);
-            document.getElementById('goalForm').addEventListener('submit', handleGoalSubmit);
-            
-            // Навигация
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const pageId = this.getAttribute('data-page');
-                    showPage(pageId);
-                    
-                    document.querySelectorAll('.nav-link').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
-
-            // Фильтры аналитики
-            document.getElementById('analyticsPeriod').addEventListener('change', updateAnalytics);
+        if (window.trendChartInstance) {
+            window.trendChartInstance.destroy();
+            window.trendChartInstance = null;
         }
+        
+        if (document.getElementById('analytics').classList.contains('active')) {
+            setTimeout(updateAnalytics, 100);
+        }
+    });
 
-        // Авторизация (упрощенная версия)
-        function handleRegister(e) {
+    setTimeout(() => {
+        if (currentUser) {
+            updateAnalytics();
+        }
+    }, 1000);
+});
+
+function initializeApp() {
+    if (!localStorage.getItem('finTrackUsers')) {
+        localStorage.setItem('finTrackUsers', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('finTrackTransactions')) {
+        localStorage.setItem('finTrackTransactions', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('finTrackTasks')) {
+        localStorage.setItem('finTrackTasks', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('finTrackGoals')) {
+        localStorage.setItem('finTrackGoals', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('finTrackDebts')) {
+        localStorage.setItem('finTrackDebts', JSON.stringify([]));
+    }
+    
+    populateCategorySelects();
+    setupCategoryFilters();
+    initializeCalendar();
+}
+
+function setupEventListeners() {
+    // Авторизация
+    document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
+    document.getElementById('registerBtn').addEventListener('click', () => openModal('registerModal'));
+    document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+    
+    // Формы
+    document.getElementById('registerForm').addEventListener('submit', handleRegister);
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    document.getElementById('transactionForm').addEventListener('submit', handleTransactionSubmit);
+    document.getElementById('taskForm').addEventListener('submit', handleTaskSubmit);
+    document.getElementById('goalForm').addEventListener('submit', handleGoalSubmit);
+    document.getElementById('debtForm').addEventListener('submit', handleDebtSubmit);
+    
+    // Навигация
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
+            const pageId = this.getAttribute('data-page');
+            showPage(pageId);
             
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value.toLowerCase();
-            const password = document.getElementById('registerPassword').value;
+            document.querySelectorAll('.nav-link').forEach(item => {
+                item.classList.remove('active');
+            });
+            this.classList.add('active');
             
-            const users = JSON.parse(localStorage.getItem('finTrackUsers'));
-            
-            if (users.find(u => u.email === email)) {
-                showNotification('Пользователь с таким email уже зарегистрирован', 'error');
-                return;
+            // Особые действия при переключении страниц
+            if (pageId === 'tasks') {
+                updateTaskProgress();
+                updateCalendar();
             }
-            
-            const newUser = {
-                id: Date.now(),
-                name,
-                email,
-                password: btoa(password),
-                subscription: 'trial',
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('finTrackUsers', JSON.stringify(users));
-            
-            currentUser = newUser;
-            localStorage.setItem('finTrackCurrentUser', JSON.stringify(newUser));
-            
-            closeModal('registerModal');
-            showApp();
-            showNotification(`Добро пожаловать, ${name}!`, 'success');
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value.toLowerCase();
-            const password = document.getElementById('loginPassword').value;
-            
-            const users = JSON.parse(localStorage.getItem('finTrackUsers'));
-            const user = users.find(u => u.email === email && u.password === btoa(password));
-            
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('finTrackCurrentUser', JSON.stringify(user));
-                closeModal('loginModal');
-                showApp();
-                showNotification(`С возвращением, ${user.name}!`, 'success');
-            } else {
-                showNotification('Неверный email или пароль', 'error');
-            }
-        }
-
-        function handleLogout() {
-            currentUser = null;
-            localStorage.removeItem('finTrackCurrentUser');
-            showAuth();
-            showNotification('Вы вышли из системы', 'success');
-        }
-
-        function checkAuthStatus() {
-            const userData = localStorage.getItem('finTrackCurrentUser');
-            if (userData) {
-                currentUser = JSON.parse(userData);
-                showApp();
-            } else {
-                showAuth();
-            }
-        }
-
-        function showApp() {
-            document.getElementById('appContainer').style.display = 'flex';
-            document.getElementById('headerActions').style.display = 'none';
-            document.getElementById('userMenu').style.display = 'flex';
-            document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
-            document.getElementById('userName').textContent = currentUser.name;
-            
-            loadUserData();
-            updateUI();
-            updateCurrentDate();
-        }
-
-        function showAuth() {
-            document.getElementById('appContainer').style.display = 'none';
-            document.getElementById('headerActions').style.display = 'flex';
-            document.getElementById('userMenu').style.display = 'none';
-        }
-
-        // Управление данными
-        function loadUserData() {
-            if (!currentUser) return;
-            
-            const allTransactions = JSON.parse(localStorage.getItem('finTrackTransactions'));
-            const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
-            const allGoals = JSON.parse(localStorage.getItem('finTrackGoals') || '[]');
-            
-            transactions = allTransactions.filter(t => t.userId === currentUser.id);
-            tasks = allTasks.filter(t => t.userId === currentUser.id);
-            goals = allGoals.filter(g => g.userId === currentUser.id);
-        }
-
-        function updateUI() {
-            updateFinancialStats();
-            updateTransactionTables();
-            updateTaskList();
-            updateGoalsDisplay();
-            updateSubscriptionInfo();
-        }
-
-        // Транзакции
-        function showAddTransactionModal() {
-            document.getElementById('transactionDate').value = new Date().toISOString().split('T')[0];
-            openModal('addTransactionModal');
-        }
-
-        function handleTransactionSubmit(e) {
-            e.preventDefault();
-            
-            const type = document.getElementById('transactionType').value;
-            const amount = parseFloat(document.getElementById('transactionAmount').value);
-            const categoryId = parseInt(document.getElementById('transactionCategory').value);
-            const description = document.getElementById('transactionDescription').value;
-            const date = document.getElementById('transactionDate').value;
-            
-            addTransaction(type, amount, categoryId, description, date);
-            document.getElementById('transactionForm').reset();
-            closeModal('addTransactionModal');
-        }
-
-        function addTransaction(type, amount, categoryId, description, date) {
-            const newTransaction = {
-                id: Date.now(),
-                userId: currentUser.id,
-                type,
-                amount,
-                categoryId,
-                description,
-                date,
-                createdAt: new Date().toISOString()
-            };
-            
-            transactions.push(newTransaction);
-            
-            const allTransactions = JSON.parse(localStorage.getItem('finTrackTransactions'));
-            allTransactions.push(newTransaction);
-            localStorage.setItem('finTrackTransactions', JSON.stringify(allTransactions));
-            
-            updateUI();
-            showNotification('Транзакция добавлена!', 'success');
-        }
-
-        function deleteTransaction(id) {
-            if (!confirm('Удалить эту транзакцию?')) return;
-            
-            transactions = transactions.filter(t => t.id !== id);
-            const allTransactions = JSON.parse(localStorage.getItem('finTrackTransactions'));
-            const updatedTransactions = allTransactions.filter(t => t.id !== id);
-            localStorage.setItem('finTrackTransactions', JSON.stringify(updatedTransactions));
-            
-            updateUI();
-            showNotification('Транзакция удалена!', 'success');
-        }
-
-        // Задачи
-        function showAddTaskModal() {
-            document.getElementById('taskDueDate').value = new Date().toISOString().split('T')[0];
-            openModal('addTaskModal');
-        }
-
-        function handleTaskSubmit(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('taskTitle').value;
-            const description = document.getElementById('taskDescription').value;
-            const priority = document.getElementById('taskPriority').value;
-            const dueDate = document.getElementById('taskDueDate').value;
-            
-            addTask(title, description, priority, dueDate);
-            document.getElementById('taskForm').reset();
-            closeModal('addTaskModal');
-        }
-
-        function addTask(title, description, priority, dueDate) {
-            const newTask = {
-                id: Date.now(),
-                userId: currentUser.id,
-                title,
-                description,
-                priority,
-                dueDate,
-                completed: false,
-                createdAt: new Date().toISOString()
-            };
-            
-            tasks.push(newTask);
-            
-            const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
-            allTasks.push(newTask);
-            localStorage.setItem('finTrackTasks', JSON.stringify(allTasks));
-            
-            updateUI();
-            showNotification('Задача добавлена!', 'success');
-        }
-
-        function toggleTaskCompletion(id) {
-            const task = tasks.find(t => t.id === id);
-            if (task) {
-                task.completed = !task.completed;
-                
-                const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
-                const taskIndex = allTasks.findIndex(t => t.id === id);
-                if (taskIndex !== -1) {
-                    allTasks[taskIndex].completed = task.completed;
-                    localStorage.setItem('finTrackTasks', JSON.stringify(allTasks));
-                }
-                
-                updateUI();
-            }
-        }
-
-        function deleteTask(id) {
-            if (!confirm('Удалить эту задачу?')) return;
-            
-            tasks = tasks.filter(t => t.id !== id);
-            const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
-            const updatedTasks = allTasks.filter(t => t.id !== id);
-            localStorage.setItem('finTrackTasks', JSON.stringify(updatedTasks));
-            
-            updateUI();
-            showNotification('Задача удалена!', 'success');
-        }
-
-        // Цели
-        function showAddGoalModal() {
-            const nextYear = new Date();
-            nextYear.setFullYear(nextYear.getFullYear() + 1);
-            document.getElementById('goalDate').value = nextYear.toISOString().split('T')[0];
-            openModal('addGoalModal');
-        }
-
-        function handleGoalSubmit(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('goalTitle').value;
-            const targetAmount = parseFloat(document.getElementById('goalAmount').value);
-            const currentAmount = parseFloat(document.getElementById('goalCurrent').value);
-            const targetDate = document.getElementById('goalDate').value;
-            const category = document.getElementById('goalCategory').value;
-            
-            addGoal(title, targetAmount, currentAmount, targetDate, category);
-            document.getElementById('goalForm').reset();
-            closeModal('addGoalModal');
-        }
-
-        function addGoal(title, targetAmount, currentAmount, targetDate, category) {
-            const newGoal = {
-                id: Date.now(),
-                userId: currentUser.id,
-                title,
-                targetAmount,
-                currentAmount,
-                targetDate,
-                category,
-                createdAt: new Date().toISOString()
-            };
-            
-            goals.push(newGoal);
-            saveGoals();
-            updateGoalsDisplay();
-            showNotification('Цель создана!', 'success');
-        }
-
-        function updateGoalProgress(id, newAmount) {
-            const goal = goals.find(g => g.id === id);
-            if (goal) {
-                goal.currentAmount = newAmount;
-                saveGoals();
-                updateGoalsDisplay();
-            }
-        }
-
-        function deleteGoal(id) {
-            if (!confirm('Удалить эту цель?')) return;
-            
-            goals = goals.filter(g => g.id !== id);
-            saveGoals();
-            updateGoalsDisplay();
-            showNotification('Цель удалена!', 'success');
-        }
-
-        // Вспомогательные функции
-        function updateFinancialStats() {
-            const totalIncome = transactions
-                .filter(t => t.type === 'income')
-                .reduce((sum, t) => sum + t.amount, 0);
-                
-            const totalExpense = transactions
-                .filter(t => t.type === 'expense')
-                .reduce((sum, t) => sum + t.amount, 0);
-                
-            const totalBalance = totalIncome - totalExpense;
-            
-            document.getElementById('totalIncome').textContent = `${totalIncome} ₽`;
-            document.getElementById('totalExpense').textContent = `${totalExpense} ₽`;
-            document.getElementById('totalBalance').textContent = `${totalBalance} ₽`;
-        }
-
-        function updateTransactionTables() {
-            // Недавние транзакции для дашборда
-            const recentTransactions = [...transactions]
-                .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .slice(0, 5);
-                
-            const recentTable = document.getElementById('recentTransactions');
-            recentTable.innerHTML = '';
-            
-            recentTransactions.forEach(transaction => {
-                const category = categories.find(c => c.id == transaction.categoryId);
-                const row = document.createElement('tr');
-                
-                row.innerHTML = `
-                    <td>${formatDate(transaction.date)}</td>
-                    <td>${transaction.description || '-'}</td>
-                    <td>${category ? category.name : 'Неизвестно'}</td>
-                    <td class="${transaction.type === 'income' ? 'income-amount' : 'expense-amount'}">
-                        ${transaction.type === 'income' ? '+' : '-'}${transaction.amount} ₽
-                    </td>
-                `;
-                
-                recentTable.appendChild(row);
-            });
-            
-            // Все транзакции
-            const allTable = document.getElementById('allTransactions');
-            allTable.innerHTML = '';
-            
-            transactions.forEach(transaction => {
-                const category = categories.find(c => c.id == transaction.categoryId);
-                const row = document.createElement('tr');
-                
-                row.innerHTML = `
-                    <td>${formatDate(transaction.date)}</td>
-                    <td>${transaction.type === 'income' ? 'Доход' : 'Расход'}</td>
-                    <td>${transaction.description || '-'}</td>
-                    <td>${category ? category.name : 'Неизвестно'}</td>
-                    <td class="${transaction.type === 'income' ? 'income-amount' : 'expense-amount'}">
-                        ${transaction.amount} ₽
-                    </td>
-                    <td>
-                        <button class="btn btn-danger btn-sm" onclick="deleteTransaction(${transaction.id})">Удалить</button>
-                    </td>
-                `;
-                
-                allTable.appendChild(row);
-            });
-        }
-
-        function updateTaskList() {
-            const taskList = document.getElementById('taskList');
-            taskList.innerHTML = '';
-            
-            tasks.forEach(task => {
-                const taskCard = document.createElement('div');
-                taskCard.className = `task-card ${task.completed ? 'task-completed' : ''}`;
-                
-                taskCard.innerHTML = `
-                    <div class="task-header">
-                        <div>
-                            <div class="task-title">${task.title}</div>
-                        </div>
-                        <span class="task-priority priority-${task.priority}">
-                            ${task.priority === 'high' ? 'Высокий' : task.priority === 'medium' ? 'Средний' : 'Низкий'}
-                        </span>
-                    </div>
-                    <div class="task-description">${task.description || 'Нет описания'}</div>
-                    <div class="task-meta">
-                        <span>Срок: ${task.dueDate ? formatDate(task.dueDate) : 'Не установлен'}</span>
-                    </div>
-                    <div class="task-actions">
-                        <button class="btn btn-success btn-sm" onclick="toggleTaskCompletion(${task.id})">
-                            ${task.completed ? 'Возобновить' : 'Завершить'}
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">Удалить</button>
-                    </div>
-                `;
-                
-                taskList.appendChild(taskCard);
-            });
-        }
-
-        function updateGoalsDisplay() {
-            const goalsList = document.getElementById('goalsList');
-            goalsList.innerHTML = '';
-            
-            goals.forEach(goal => {
-                const progress = (goal.currentAmount / goal.targetAmount) * 100;
-                const daysLeft = Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24));
-                
-                const goalCard = document.createElement('div');
-                goalCard.className = 'goal-card';
-                goalCard.innerHTML = `
-                    <div class="goal-header">
-                        <div>
-                            <div class="goal-title">${goal.title}</div>
-                            <span class="goal-category">${goal.category}</span>
-                        </div>
-                    </div>
-                    <div class="goal-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${Math.min(progress, 100)}%"></div>
-                        </div>
-                        <div class="progress-info">
-                            <span>${goal.currentAmount} ₽</span>
-                            <span>${goal.targetAmount} ₽</span>
-                        </div>
-                    </div>
-                    <div class="goal-meta">
-                        <span>Прогресс: ${progress.toFixed(1)}%</span>
-                        <span>Осталось: ${daysLeft} дн.</span>
-                    </div>
-                    <div class="goal-actions">
-                        <input type="number" class="form-control" placeholder="Новая сумма" 
-                               onchange="updateGoalProgress(${goal.id}, parseFloat(this.value))">
-                        <button class="btn btn-danger btn-sm" onclick="deleteGoal(${goal.id})">Удалить</button>
-                    </div>
-                `;
-                
-                goalsList.appendChild(goalCard);
-            });
-        }
-
-        function updateAnalytics() {
-            createCategoryChart();
-            createTrendChart();
-        }
-
-        function createCategoryChart() {
-            const ctx = document.getElementById('categoryChart').getContext('2d');
-            const expenseCategories = categories.filter(c => c.type === 'expense');
-            const expenseData = expenseCategories.map(category => {
-                const categoryTransactions = transactions.filter(t => 
-                    t.type === 'expense' && t.categoryId === category.id
-                );
-                return categoryTransactions.reduce((sum, t) => sum + t.amount, 0);
-            });
-            
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: expenseCategories.map(c => c.name),
-                    datasets: [{
-                        data: expenseData,
-                        backgroundColor: expenseCategories.map(c => c.color)
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-        }
-
-        function createTrendChart() {
-            const ctx = document.getElementById('trendChart').getContext('2d');
-            
-            // Группируем по месяцам
-            const monthlyData = {};
-            transactions.forEach(transaction => {
-                const date = new Date(transaction.date);
-                const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
-                
-                if (!monthlyData[monthKey]) {
-                    monthlyData[monthKey] = { income: 0, expense: 0 };
-                }
-                
-                if (transaction.type === 'income') {
-                    monthlyData[monthKey].income += transaction.amount;
-                } else {
-                    monthlyData[monthKey].expense += transaction.amount;
-                }
-            });
-            
-            const labels = Object.keys(monthlyData).sort();
-            const incomeData = labels.map(label => monthlyData[label].income);
-            const expenseData = labels.map(label => monthlyData[label].expense);
-            
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Доходы',
-                            data: incomeData,
-                            borderColor: '#4CAF50',
-                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                            tension: 0.4
-                        },
-                        {
-                            label: 'Расходы',
-                            data: expenseData,
-                            borderColor: '#F44336',
-                            backgroundColor: 'rgba(244, 67, 54, 0.1)',
-                            tension: 0.4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            });
-        }
-
-        function setupCategoryFilters() {
-            const filtersContainer = document.getElementById('categoryFilters');
-            categories.forEach(category => {
-                if (category.type === 'expense') {
-                    const filter = document.createElement('div');
-                    filter.className = 'category-filter active';
-                    filter.textContent = category.name;
-                    filter.onclick = function() {
-                        this.classList.toggle('active');
-                        // Здесь будет обновление графиков по выбранным категориям
-                    };
-                    filtersContainer.appendChild(filter);
-                }
-            });
-        }
-
-        function populateCategorySelects() {
-            const select = document.getElementById('transactionCategory');
-            select.innerHTML = '';
-            
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.id;
-                option.textContent = `${category.icon} ${category.name}`;
-                select.appendChild(option);
-            });
-        }
-
-        function updateSubscriptionInfo() {
-            const currentPlanDiv = document.getElementById('currentPlan');
-            currentPlanDiv.innerHTML = `
-                <p>У вас активен <strong>${currentUser.subscription === 'trial' ? 'пробный период' : 'базовый план'}</strong>.</p>
-                <p>${currentUser.subscription === 'trial' ? 'Осталось 7 дней бесплатного использования' : 'Стоимость: 250₽/месяц'}</p>
-            `;
-        }
-
-        function saveGoals() {
-            const allGoals = JSON.parse(localStorage.getItem('finTrackGoals') || '[]');
-            const userGoals = allGoals.filter(g => g.userId !== currentUser.id);
-            localStorage.setItem('finTrackGoals', JSON.stringify([...userGoals, ...goals]));
-        }
-
-        // Утилиты
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
             if (pageId === 'analytics') {
                 updateAnalytics();
             }
-        }
-
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `<p>${message}</p>`;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => notification.classList.add('show'), 100);
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => document.body.removeChild(notification), 300);
-            }, 4000);
-        }
-
-        function updateCurrentDate() {
-            const now = new Date();
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('ru-RU', { 
-                day: 'numeric', month: 'long', year: 'numeric' 
-            });
-        }
-
-        function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString('ru-RU');
-        }
-
-        // Закрытие модальных окон при клике вне их
-        window.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
+            if (pageId === 'debts') {
+                updateDebtsDisplay();
             }
         });
+    });
+
+    // Фильтры аналитики
+    document.getElementById('analyticsPeriod').addEventListener('change', updateAnalytics);
+}
+
+// ==================== СИСТЕМА АВТОРИЗАЦИИ ====================
+function handleRegister(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value.toLowerCase();
+    const password = document.getElementById('registerPassword').value;
+    
+    const users = JSON.parse(localStorage.getItem('finTrackUsers'));
+    
+    if (users.find(u => u.email === email)) {
+        showNotification('Пользователь с таким email уже зарегистрирован', 'error');
+        return;
+    }
+    
+    const newUser = {
+        id: Date.now(),
+        name,
+        email,
+        password: btoa(password),
+        subscription: 'trial',
+        createdAt: new Date().toISOString()
+    };
+    
+    users.push(newUser);
+    localStorage.setItem('finTrackUsers', JSON.stringify(users));
+    
+    currentUser = newUser;
+    localStorage.setItem('finTrackCurrentUser', JSON.stringify(newUser));
+    
+    closeModal('registerModal');
+    showApp();
+    showNotification(`Добро пожаловать, ${name}!`, 'success');
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value.toLowerCase();
+    const password = document.getElementById('loginPassword').value;
+    
+    const users = JSON.parse(localStorage.getItem('finTrackUsers'));
+    const user = users.find(u => u.email === email && u.password === btoa(password));
+    
+    if (user) {
+        currentUser = user;
+        localStorage.setItem('finTrackCurrentUser', JSON.stringify(user));
+        closeModal('loginModal');
+        showApp();
+        showNotification(`С возвращением, ${user.name}!`, 'success');
+    } else {
+        showNotification('Неверный email или пароль', 'error');
+    }
+}
+
+function handleLogout() {
+    currentUser = null;
+    localStorage.removeItem('finTrackCurrentUser');
+    showAuth();
+    showNotification('Вы вышли из системы', 'success');
+}
+
+function checkAuthStatus() {
+    const userData = localStorage.getItem('finTrackCurrentUser');
+    if (userData) {
+        currentUser = JSON.parse(userData);
+        showApp();
+    } else {
+        showAuth();
+    }
+}
+
+function showApp() {
+    document.getElementById('appContainer').style.display = 'flex';
+    document.getElementById('headerActions').style.display = 'none';
+    document.getElementById('userMenu').style.display = 'flex';
+    document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+    document.getElementById('userName').textContent = currentUser.name;
+    
+    loadUserData();
+    updateUI();
+    updateCurrentDate();
+}
+
+function showAuth() {
+    document.getElementById('appContainer').style.display = 'none';
+    document.getElementById('headerActions').style.display = 'flex';
+    document.getElementById('userMenu').style.display = 'none';
+}
+
+// ==================== ОБНОВЛЕННАЯ ЛОГИКА ДАННЫХ ====================
+function loadUserData() {
+    if (!currentUser) return;
+    
+    const allTransactions = JSON.parse(localStorage.getItem('finTrackTransactions'));
+    const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
+    const allGoals = JSON.parse(localStorage.getItem('finTrackGoals') || '[]');
+    const allDebts = JSON.parse(localStorage.getItem('finTrackDebts') || '[]');
+    
+    transactions = allTransactions.filter(t => t.userId === currentUser.id);
+    tasks = allTasks.filter(t => t.userId === currentUser.id);
+    goals = allGoals.filter(g => g.userId === currentUser.id);
+    debts = allDebts.filter(d => d.userId === currentUser.id);
+}
+
+function updateUI() {
+    updateFinancialStats();
+    updateTransactionTables();
+    updateTaskList();
+    updateGoalsDisplay();
+    updateDebtsDisplay();
+    updateSubscriptionInfo();
+    updateTaskProgress();
+}
+
+// ==================== АВТООБНОВЛЯЕМАЯ ФИНАНСОВАЯ СТАТИСТИКА ====================
+function updateFinancialStats() {
+    const totalIncome = transactions
+        .filter(t => t.type === 'income')
+        .reduce((sum, t) => sum + t.amount, 0);
+        
+    const totalExpense = transactions
+        .filter(t => t.type === 'expense')
+        .reduce((sum, t) => sum + t.amount, 0);
+        
+    const totalBalance = totalIncome - totalExpense;
+    
+    // Деньги на цели (замороженные средства)
+    const totalGoalsAmount = goals.reduce((sum, goal) => sum + goal.currentAmount, 0);
+    const availableBalance = totalBalance - totalGoalsAmount;
+    
+    // Учет долгов
+    const totalDebts = debts.reduce((sum, debt) => sum + debt.amount, 0);
+    const netWorth = totalBalance - totalDebts;
+    
+    document.getElementById('totalIncome').textContent = `${totalIncome} ₽`;
+    document.getElementById('totalExpense').textContent = `${totalExpense} ₽`;
+    document.getElementById('totalBalance').textContent = `${totalBalance} ₽`;
+    
+    updateGoalsOnDashboard(totalGoalsAmount, availableBalance);
+    updateNetWorth(netWorth, totalDebts);
+}
+
+function updateGoalsOnDashboard(goalsAmount, availableBalance) {
+    let goalsCard = document.getElementById('goalsMoneyCard');
+    
+    if (!goalsCard) {
+        const statsContainer = document.querySelector('.stats-cards');
+        goalsCard = document.createElement('div');
+        goalsCard.className = 'stat-card';
+        goalsCard.id = 'goalsMoneyCard';
+        goalsCard.style.borderLeft = '4px solid #9C27B0';
+        goalsCard.innerHTML = `
+            <h3>Деньги на цели</h3>
+            <div class="amount" id="goalsAmount">0 ₽</div>
+            <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+                Доступно: <span id="availableBalance">0 ₽</span>
+            </div>
+        `;
+        statsContainer.appendChild(goalsCard);
+    }
+    
+    document.getElementById('goalsAmount').textContent = `${goalsAmount} ₽`;
+    document.getElementById('availableBalance').textContent = `${availableBalance} ₽`;
+}
+
+function updateNetWorth(netWorth, totalDebts) {
+    let netWorthCard = document.getElementById('netWorthCard');
+    
+    if (!netWorthCard) {
+        const statsContainer = document.querySelector('.stats-cards');
+        netWorthCard = document.createElement('div');
+        netWorthCard.className = 'stat-card';
+        netWorthCard.id = 'netWorthCard';
+        netWorthCard.style.borderLeft = '4px solid #FF9800';
+        netWorthCard.innerHTML = `
+            <h3>Чистые активы</h3>
+            <div class="amount" id="netWorthAmount">0 ₽</div>
+            <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+                Долги: <span id="totalDebtsAmount">0 ₽</span>
+            </div>
+        `;
+        statsContainer.appendChild(netWorthCard);
+    }
+    
+    document.getElementById('netWorthAmount').textContent = `${netWorth} ₽`;
+    document.getElementById('totalDebtsAmount').textContent = `${totalDebts} ₽`;
+}
+
+// ==================== АДАПТИВНЫЕ ТРАНЗАКЦИИ ====================
+function updateTransactionTables() {
+    updateRecentTransactions();
+    updateAllTransactions();
+}
+
+function updateRecentTransactions() {
+    const recentTransactions = [...transactions]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 5);
+        
+    const recentTable = document.getElementById('recentTransactions');
+    recentTable.innerHTML = '';
+    
+    recentTransactions.forEach(transaction => {
+        const category = categories.find(c => c.id == transaction.categoryId);
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${formatDate(transaction.date)}</td>
+            <td>${transaction.description || '-'}</td>
+            <td>${category ? category.name : 'Неизвестно'}</td>
+            <td class="${transaction.type === 'income' ? 'income-amount' : 'expense-amount'}">
+                ${transaction.type === 'income' ? '+' : '-'}${transaction.amount} ₽
+            </td>
+        `;
+        
+        recentTable.appendChild(row);
+    });
+}
+
+function updateAllTransactions() {
+    const allTable = document.getElementById('allTransactions');
+    allTable.innerHTML = '';
+    
+    transactions.forEach(transaction => {
+        const category = categories.find(c => c.id == transaction.categoryId);
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${formatDate(transaction.date)}</td>
+            <td>${getTransactionTypeText(transaction.type)}</td>
+            <td>${transaction.description || '-'}</td>
+            <td>${category ? category.name : 'Неизвестно'}</td>
+            <td class="${transaction.type === 'income' ? 'income-amount' : 'expense-amount'}">
+                ${transaction.amount} ₽
+            </td>
+            <td class="action-buttons">
+                <button class="btn btn-danger btn-sm" onclick="deleteTransaction(${transaction.id})">Удалить</button>
+            </td>
+        `;
+        
+        allTable.appendChild(row);
+    });
+}
+
+function getTransactionTypeText(type) {
+    const types = {
+        'income': 'Доход',
+        'expense': 'Расход',
+        'debt_income': 'Долг мне',
+        'debt_expense': 'Мой долг'
+    };
+    return types[type] || type;
+}
+
+// ==================== СИСТЕМА ДОЛГОВ ====================
+function handleDebtSubmit(e) {
+    e.preventDefault();
+    
+    const type = document.getElementById('debtType').value;
+    const amount = parseFloat(document.getElementById('debtAmount').value);
+    const description = document.getElementById('debtDescription').value;
+    const person = document.getElementById('debtPerson').value;
+    const dueDate = document.getElementById('debtDueDate').value;
+    
+    addDebt(type, amount, description, person, dueDate);
+    document.getElementById('debtForm').reset();
+    closeModal('addDebtModal');
+}
+
+function addDebt(type, amount, description, person, dueDate) {
+    const newDebt = {
+        id: Date.now(),
+        userId: currentUser.id,
+        type,
+        amount,
+        description,
+        person,
+        dueDate,
+        createdAt: new Date().toISOString()
+    };
+    
+    debts.push(newDebt);
+    
+    const allDebts = JSON.parse(localStorage.getItem('finTrackDebts') || '[]');
+    allDebts.push(newDebt);
+    localStorage.setItem('finTrackDebts', JSON.stringify(allDebts));
+    
+    updateUI();
+    showNotification('Долг добавлен!', 'success');
+}
+
+function updateDebtsDisplay() {
+    const debtsList = document.getElementById('debtsList');
+    if (!debtsList) return;
+    
+    debtsList.innerHTML = '';
+    
+    debts.forEach(debt => {
+        const debtCard = document.createElement('div');
+        debtCard.className = 'debt-card';
+        
+        debtCard.innerHTML = `
+            <div class="debt-header">
+                <div>
+                    <h4>${debt.person}</h4>
+                    <p>${debt.description}</p>
+                </div>
+                <div class="debt-amount ${debt.type === 'debt_income' ? 'debt-positive' : 'debt-negative'}">
+                    ${debt.type === 'debt_income' ? '+' : '-'}${debt.amount} ₽
+                </div>
+            </div>
+            <div class="debt-meta">
+                <span>Срок: ${debt.dueDate ? formatDate(debt.dueDate) : 'Не установлен'}</span>
+                <button class="btn btn-danger btn-sm" onclick="deleteDebt(${debt.id})">Удалить</button>
+            </div>
+        `;
+        
+        debtsList.appendChild(debtCard);
+    });
+}
+
+function deleteDebt(id) {
+    if (!confirm('Удалить эту запись о долге?')) return;
+    
+    debts = debts.filter(d => d.id !== id);
+    const allDebts = JSON.parse(localStorage.getItem('finTrackDebts') || '[]');
+    const updatedDebts = allDebts.filter(d => d.id !== id);
+    localStorage.setItem('finTrackDebts', JSON.stringify(updatedDebts));
+    
+    updateUI();
+    showNotification('Долг удален!', 'success');
+}
+
+// ==================== УЛУЧШЕННАЯ АНАЛИТИКА ====================
+function updateAnalytics() {
+    createCategoryChart();
+    createTrendChart();
+}
+
+function createTrendChart() {
+    const ctx = document.getElementById('trendChart');
+    if (!ctx) return;
+    
+    if (window.trendChartInstance) {
+        window.trendChartInstance.destroy();
+    }
+    
+    // Группируем по месяцам для понятности
+    const monthlyData = {};
+    transactions.forEach(transaction => {
+        const date = new Date(transaction.date);
+        const monthKey = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+        
+        if (!monthlyData[monthKey]) {
+            monthlyData[monthKey] = { income: 0, expense: 0 };
+        }
+        
+        if (transaction.type === 'income') {
+            monthlyData[monthKey].income += transaction.amount;
+        } else if (transaction.type === 'expense') {
+            monthlyData[monthKey].expense += transaction.amount;
+        }
+    });
+    
+    const labels = Object.keys(monthlyData).sort().map(label => {
+        const [year, month] = label.split('-');
+        const monthNames = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+        return `${monthNames[parseInt(month) - 1]} ${year}`;
+    });
+    
+    const incomeData = Object.keys(monthlyData).sort().map(label => monthlyData[label].income);
+    const expenseData = Object.keys(monthlyData).sort().map(label => monthlyData[label].expense);
+    
+    window.trendChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Доходы',
+                    data: incomeData,
+                    backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                    borderColor: '#4CAF50',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Расходы',
+                    data: expenseData,
+                    backgroundColor: 'rgba(244, 67, 54, 0.7)',
+                    borderColor: '#F44336',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Динамика доходов и расходов по месяцам'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' ₽';
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+// ==================== УЛУЧШЕННАЯ СИСТЕМА ЦЕЛЕЙ ====================
+function handleGoalSubmit(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('goalTitle').value;
+    const targetAmount = parseFloat(document.getElementById('goalAmount').value);
+    const targetDate = document.getElementById('goalDate').value;
+    const category = document.getElementById('goalCategory').value;
+    
+    addGoal(title, targetAmount, targetDate, category);
+    document.getElementById('goalForm').reset();
+    closeModal('addGoalModal');
+}
+
+function addGoal(title, targetAmount, targetDate, category) {
+    const newGoal = {
+        id: Date.now(),
+        userId: currentUser.id,
+        title,
+        targetAmount,
+        currentAmount: 0,
+        targetDate,
+        category,
+        createdAt: new Date().toISOString()
+    };
+    
+    goals.push(newGoal);
+    saveGoals();
+    updateGoalsDisplay();
+    showNotification('Цель создана!', 'success');
+}
+
+function addMoneyToGoal(goalId) {
+    const input = document.getElementById(`goalInput-${goalId}`);
+    const amount = parseFloat(input.value);
+    
+    if (!amount || amount <= 0) {
+        showNotification('Введите корректную сумму', 'error');
+        return;
+    }
+    
+    const goal = goals.find(g => g.id === goalId);
+    if (goal) {
+        // Проверяем достаточно ли денег на балансе
+        const totalBalance = transactions
+            .filter(t => t.type === 'income')
+            .reduce((sum, t) => sum + t.amount, 0) -
+            transactions.filter(t => t.type === 'expense')
+            .reduce((sum, t) => sum + t.amount, 0);
+            
+        const totalGoals = goals.reduce((sum, g) => sum + g.currentAmount, 0);
+        const available = totalBalance - totalGoals;
+        
+        if (amount > available) {
+            showNotification('Недостаточно средств на балансе!', 'error');
+            return;
+        }
+        
+        goal.currentAmount += amount;
+        
+        if (goal.currentAmount >= goal.targetAmount) {
+            goal.currentAmount = goal.targetAmount;
+            showNotification('Цель достигнута! 🎉', 'success');
+        }
+        
+        saveGoals();
+        updateGoalsDisplay();
+        updateFinancialStats(); // Автообновление баланса
+        
+        showNotification(`Добавлено ${amount} ₽ к цели "${goal.title}"`, 'success');
+        input.value = '';
+    }
+}
+
+// ==================== УЛУЧШЕННАЯ СИСТЕМА ЗАДАЧ ====================
+function handleTaskSubmit(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('taskTitle').value;
+    const description = document.getElementById('taskDescription').value;
+    const priority = document.getElementById('taskPriority').value;
+    const dueDate = document.getElementById('taskDueDate').value;
+    const category = document.getElementById('taskCategory').value;
+    
+    addTask(title, description, priority, dueDate, category);
+    document.getElementById('taskForm').reset();
+    closeModal('addTaskModal');
+}
+
+function addTask(title, description, priority, dueDate, category) {
+    const newTask = {
+        id: Date.now(),
+        userId: currentUser.id,
+        title,
+        description,
+        priority,
+        dueDate,
+        category,
+        completed: false,
+        createdAt: new Date().toISOString()
+    };
+    
+    tasks.push(newTask);
+    
+    const allTasks = JSON.parse(localStorage.getItem('finTrackTasks'));
+    allTasks.push(newTask);
+    localStorage.setItem('finTrackTasks', JSON.stringify(allTasks));
+    
+    updateUI();
+    showNotification('Задача добавлена!', 'success');
+}
+
+function updateTaskList() {
+    const taskList = document.getElementById('taskList');
+    if (!taskList) return;
+    
+    taskList.innerHTML = '';
+    
+    // Сортируем задачи: сначала невыполненные, затем выполненные
+    const sortedTasks = [...tasks].sort((a, b) => {
+        if (a.completed !== b.completed) return a.completed ? 1 : -1;
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+    
+    sortedTasks.forEach(task => {
+        const taskCard = document.createElement('div');
+        taskCard.className = `task-card-new ${task.completed ? 'task-completed' : ''}`;
+        
+        taskCard.innerHTML = `
+            <div style="display: flex; align-items: flex-start;">
+                <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} 
+                       onchange="toggleTaskCompletion(${task.id})">
+                <div class="task-content">
+                    <div class="task-title">${task.title}</div>
+                    <div class="task-description">${task.description || 'Нет описания'}</div>
+                    <div class="task-meta-new">
+                        <span class="task-priority-badge priority-${task.priority}">
+                            ${getPriorityText(task.priority)}
+                        </span>
+                        <span>📅 ${task.dueDate ? formatDate(task.dueDate) : 'Без срока'}</span>
+                        <span>📁 ${task.category || 'Без категории'}</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">Удалить</button>
+            </div>
+        `;
+        
+        taskList.appendChild(taskCard);
+    });
+}
+
+function updateTaskProgress() {
+    const totalTasks = tasks.length;
+    const completedTasks = tasks.filter(t => t.completed).length;
+    const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    
+    const progressSection = document.getElementById('taskProgress');
+    if (!progressSection) return;
+    
+    progressSection.innerHTML = `
+        <h3>Прогресс выполнения</h3>
+        <div class="progress-bar" style="height: 10px; margin: 10px 0;">
+            <div class="progress-fill" style="width: ${progress}%"></div>
+        </div>
+        <div class="progress-stats">
+            <div class="progress-stat">
+                <div style="font-size: 1.5rem; font-weight: bold;">${totalTasks}</div>
+                <div>Всего задач</div>
+            </div>
+            <div class="progress-stat">
+                <div style="font-size: 1.5rem; font-weight: bold;">${completedTasks}</div>
+                <div>Выполнено</div>
+            </div>
+            <div class="progress-stat">
+                <div style="font-size: 1.5rem; font-weight: bold;">${totalTasks - completedTasks}</div>
+                <div>Осталось</div>
+            </div>
+            <div class="progress-stat">
+                <div style="font-size: 1.5rem; font-weight: bold;">${Math.round(progress)}%</div>
+                <div>Прогресс</div>
+            </div>
+        </div>
+    `;
+}
+
+// ==================== КАЛЕНДАРЬ ЗАДАЧ ====================
+function initializeCalendar() {
+    updateCalendar();
+}
+
+function updateCalendar() {
+    const calendarGrid = document.getElementById('calendarGrid');
+    if (!calendarGrid) return;
+    
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    const lastDay = new Date(currentYear, currentMonth + 1, 0);
+    
+    calendarGrid.innerHTML = '';
+    
+    // Заголовки дней недели
+    const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    dayNames.forEach(dayName => {
+        const dayHeader = document.createElement('div');
+        dayHeader.style.fontWeight = 'bold';
+        dayHeader.textContent = dayName;
+        calendarGrid.appendChild(dayHeader);
+    });
+    
+    // Пустые ячейки до первого дня
+    for (let i = 0; i < firstDay.getDay(); i++) {
+        const emptyDay = document.createElement('div');
+        calendarGrid.appendChild(emptyDay);
+    }
+    
+    // Дни месяца
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.textContent = day;
+        
+        const dateStr = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        
+        // Проверяем есть ли задачи на эту дату
+        const hasTasks = tasks.some(task => task.dueDate === dateStr);
+        if (hasTasks) {
+            dayElement.classList.add('has-tasks');
+        }
+        
+        // Выделяем текущий день
+        if (day === today.getDate() && currentMonth === today.getMonth()) {
+            dayElement.classList.add('selected');
+        }
+        
+        dayElement.onclick = () => showTasksForDate(dateStr);
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+function showTasksForDate(date) {
+    const tasksForDate = tasks.filter(task => task.dueDate === date);
+    
+    if (tasksForDate.length > 0) {
+        let message = `Задачи на ${formatDate(date)}:\n`;
+        tasksForDate.forEach(task => {
+            message += `• ${task.title} ${task.completed ? '✅' : '⏳'}\n`;
+        });
+        showNotification(message, 'info');
+    } else {
+        showNotification(`На ${formatDate(date)} задач нет`, 'info');
+    }
+}
+
+// ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+function populateCategorySelects() {
+    const select = document.getElementById('transactionCategory');
+    if (!select) return;
+    
+    select.innerHTML = '';
+    
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = `${category.icon} ${category.name}`;
+        select.appendChild(option);
+    });
+}
+
+function setupCategoryFilters() {
+    const filtersContainer = document.getElementById('categoryFilters');
+    if (!filtersContainer) return;
+    
+    categories.forEach(category => {
+        if (category.type === 'expense') {
+            const filter = document.createElement('div');
+            filter.className = 'category-filter active';
+            filter.textContent = category.name;
+            filter.onclick = function() {
+                this.classList.toggle('active');
+            };
+            filtersContainer.appendChild(filter);
+        }
+    });
+}
+
+function saveGoals() {
+    const allGoals = JSON.parse(localStorage.getItem('finTrackGoals') || '[]');
+    const userGoals = allGoals.filter(g => g.userId !== currentUser.id);
+    localStorage.setItem('finTrackGoals', JSON.stringify([...userGoals, ...goals]));
+}
+
+function updateCurrentDate() {
+    const now = new Date();
+    document.getElementById('currentDate').textContent = now.toLocaleDateString('ru-RU', { 
+        day: 'numeric', month: 'long', year: 'numeric' 
+    });
+}
+
+function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString('ru-RU');
+}
+
+function getPriorityText(priority) {
+    const priorities = {
+        'low': 'Низкий',
+        'medium': 'Средний',
+        'high': 'Высокий'
+    };
+    return priorities[priority] || 'Неизвестно';
+}
+
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    document.getElementById(pageId).classList.add('active');
+}
+
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `<p>${message}</p>`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.classList.add('show'), 100);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => document.body.removeChild(notification), 300);
+    }, 4000);
+}
+
+// Закрытие модальных окон при клике вне их
+window.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+    }
+});
     </script>
 </body>
 </html>
